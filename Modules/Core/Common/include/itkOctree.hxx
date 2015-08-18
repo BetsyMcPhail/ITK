@@ -150,10 +150,12 @@ Octree< TPixel, ColorTableSize, MappingFunctionType >::maskToOctree(const TPixel
 {
   if ( ( x >= xsize ) || ( y >= ysize ) || ( z >= zsize ) )
     {
+    std::cout << "maskToOctree() : return m_ColorTable + B2_MASKFILE_BLACK;" << std::endl;
     return m_ColorTable + B2_MASKFILE_BLACK;
     }
   if ( width == 1 )
     {
+    std::cout << "maskToOctree() : return m_ColorTable + MappingFunction;" << std::endl;
     return m_ColorTable + m_MappingFunction.Evaluate(&Mask[z * ysize * xsize + y * xsize + x]);
     }
   width /= 2;
@@ -183,6 +185,7 @@ Octree< TPixel, ColorTableSize, MappingFunctionType >::maskToOctree(const TPixel
        && ( nodeArray[0] == nodeArray[6] )
        && ( nodeArray[0] == nodeArray[7] ) )
     {
+       std::cout << "maskToOctree() : return NodeArray[0];" << std::endl;
     return nodeArray[0];
     }
   else
@@ -269,6 +272,7 @@ Octree< TPixel, ColorTableSize, MappingFunctionType >::GetImage()
   sizes[0] = m_TrueDims[0];
   sizes[1] = m_TrueDims[1];
   sizes[2] = m_TrueDims[2];
+
   imageSize.SetSize(sizes);
   const typename ImageType::IndexType imageIndex = { { 0, 0, 0 } };
   typename ImageType::RegionType region;
@@ -289,7 +293,9 @@ Octree< TPixel, ColorTableSize, MappingFunctionType >::GetImage()
       for ( unsigned int k = 0; k < m_TrueDims[0]; k++ )
         {
         setIndex[2] = k;
-        img->SetPixel( setIndex, ( TPixel ) this->GetValue(i, j, k) );
+        int value = this->GetValue(i, j, k);
+        std::cout << "VALUE (" << i << ", " << j << ", " << k << ") : " << value << std::endl;
+        img->SetPixel( setIndex, ( TPixel ) value );
         }
       }
     }
