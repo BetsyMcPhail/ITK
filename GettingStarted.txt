@@ -4,6 +4,8 @@ Welcome to the Insight Registration and Segmentation Toolkit (ITK)
 
 Making a few chagnes to generate a pull request.
 
+And adding another line!
+
 Here are suggested steps for the ITK beginner. Please refer to
 http://itk.org for more information.
 
