@@ -1,7 +1,7 @@
 ITK: The Insight Toolkit for Segmentation and Registration
 
 
-MAKING A CHANGE HERE... And adding some more text.
+MAKING A CHANGE HERE...
 
 Links
 -----
